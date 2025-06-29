@@ -37,12 +37,9 @@
 
 ---
 
-
----
-
 ## 💻 Live Demo
 
-[GitHub Pages](https://pages.github.com/)
+[GitHub Pages](https://harilynn.github.io/TileMaster/)
 
 ---
 
