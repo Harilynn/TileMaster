@@ -2,7 +2,8 @@
 
 **TileMaster** is a modern, elegant reimagining of the classic 2048 puzzle game — with smooth animations, responsive design, and a vibrant UI.
 
-![TileMaster Screenshot](screenshot.png) <!-- optional if you have one -->
+![image](https://github.com/user-attachments/assets/787b1f7a-6ddf-41ca-81ad-7d67b9454be0)
+
 
 ---
 
