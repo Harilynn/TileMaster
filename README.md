@@ -50,6 +50,6 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/tilemaster.git
-   cd tilemaster
+   git clone https://github.com/Harilynn/TileMaster.git
+   cd 2048 Game
 
