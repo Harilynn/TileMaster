@@ -1,0 +1,201 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #776e65, #a9dbb8, #dceed1, #c6ebbe, #f1e8b8);
+  background-size: 1000% 1000%;
+  animation: gradientMove 15s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.game-title {
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 15px 30px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ffeecf, #e7f9a9);
+  color: black;
+  font-weight: bold;
+  border: 3px solid #bbada0;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom: 10px;
+}
+.header h1 {
+  font-size:2rem; color:#776e65;
+}
+.score-container {
+  background:#eee4da; padding:10px 15px; border-radius:4px;
+  text-align:center; color:#776e65;
+}
+#score { font-size:1.4rem; font-weight:bold; }
+#new-game {
+  background:#8f7a66; color:white; border:none; padding:10px;
+  border-radius:4px; cursor:pointer; transition:opacity .2s;
+}
+#new-game:hover { opacity:.9; }
+.grid {
+  width: 320px;
+  height: 320px;
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  background: #bbada0;
+  border-radius: 6px;
+  padding: 5px;
+  gap: 5px;
+  position: relative;
+  z-index: 1;
+}
+.cell {
+  width: 100%;
+  height: 100%;
+  background: #cdc1b4;
+  border-radius: 3px;
+}
+.tile {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 3px;
+  transition: top 0.2s ease-in-out, left 0.2s ease-in-out, background 0.2s;
+}
+
+.overlay {
+  position:absolute; top:0; left:0;
+  width:100%; height:100%;
+  background:#eee4daba;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-size:2rem; color:#776e65;
+  z-index:2;
+}
+.hidden { display:none; }
+#try-again {
+  margin-top:20px; background:#8f7a66; color:white;
+  padding:10px 20px; border:none; border-radius:4px;
+  cursor:pointer;
+}
+
+
+.game-card {
+  background: #bbada0;
+  
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+
+.tile-layer {
+  width: 320px;
+  height: 320px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  display: block;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+.grid-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.how-to-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.how-to-toggle {
+  padding: 10px 20px;
+  background: #8f7a66;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.how-to-toggle:hover {
+  background: #7a6655;
+}
+
+.how-to-content {
+  background: #ffffff;
+  color: #776e65;
+  max-width: 400px;
+  margin: 0;
+  padding: 0 15px;
+  border-radius: 8px;
+  border: 0 solid transparent;
+  font-size: 0.95rem;
+  text-align: left;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    max-height 0.4s ease,
+    padding 0.3s ease,
+    opacity 0.3s ease,
+    margin 0.3s ease;
+}
+
+.how-to-content.open {
+  max-height: 300px;
+  padding: 15px;
+  border-width: 2px;
+  border-color: #bbada0;
+  margin: 15px auto;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.hidden {
+  display: none;
+}

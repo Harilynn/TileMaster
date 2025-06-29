@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>2048 Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+  <div class="game-title">TileMaster</div>
+  <div class="how-to-wrapper">
+  <button class="how-to-toggle">How to Play ▼</button>
+  <div class="how-to-content">
+    <p><strong>Goal:</strong> Reach the <code>2048</code> tile by merging numbers.</p>
+    <ul>
+      <li>Use <strong>arrow keys</strong> to slide tiles.</li>
+      <li>When tiles with the same number touch, they merge.</li>
+      <li>The game ends when no more moves are possible.</li>
+    </ul>
+  </div>
+</div>
+
+  <div class="container">
+  <div class="game-card">
+    <div class="header">
+      <h1>2048</h1>
+      <div class="score-container">
+        <div>Score</div>
+        <div id="score">0</div>
+      </div>
+      <button id="new-game">New Game</button>
+    </div>
+    <div class="grid-wrapper">
+  <div class="grid" id="grid"></div>
+  <div class="tile-layer" id="tile-layer"></div>
+</div>
+
+    <div class="overlay hidden" id="overlay">
+      <div id="message"></div>
+      <button id="try-again">Try Again</button>
+    </div>
+  </div>
+</div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
