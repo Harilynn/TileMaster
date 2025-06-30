@@ -7,41 +7,59 @@
 </head>
 <body>
   <div class="page">
-  <div class="game-title">TileMaster</div>
-  <div class="how-to-wrapper">
-  <button class="how-to-toggle">How to Play ▼</button>
-  <div class="how-to-content">
-    <p><strong>Goal:</strong> Reach the <code>2048</code> tile by merging numbers.</p>
-    <ul>
-      <li>Use <strong>arrow keys</strong> to slide tiles.</li>
-      <li>When tiles with the same number touch, they merge.</li>
-      <li>The game ends when no more moves are possible.</li>
-    </ul>
-  </div>
-</div>
+    <div class="game-title">TileMaster</div>
+    
 
-  <div class="container">
-  <div class="game-card">
-    <div class="header">
-      <h1>2048</h1>
-      <div class="score-container">
-        <div>Score</div>
-        <div id="score">0</div>
+
+    <div class="how-to-wrapper">
+      <button class="how-to-toggle">How to Play ▼</button>
+      <div class="how-to-content">
+        <p><strong>Objective:</strong> Merge tiles to reach higher numbers before time runs out.</p>
+  <ul>
+    <li>Use the <strong>arrow keys</strong> to move all tiles in one direction.</li>
+    <li>When two tiles with the same number touch, they combine.</li>
+    <li>Complete each target (32 → 64 → 128 …) within the time limit.</li>
+    <li>New time will be asked after each successful stage.</li>
+    <li>The challenge ends either when time runs out or you complete all stages.</li>
+  </ul>
       </div>
-      <button id="new-game">New Game</button>
     </div>
-    <div class="grid-wrapper">
-  <div class="grid" id="grid"></div>
-  <div class="tile-layer" id="tile-layer"></div>
-</div>
 
+    <div class="setup" id="setup">
+      <h2>Click below to start the challenge 👇🏻</h2>
+    
+      <button id="start-challenge">Start Challenge</button>
+    </div>
+
+    <div class="game-wrapper hidden" id="game-wrapper">
+      <div class="container">
+        <div class="game-card">
+          <div class="header">
+            
+            <div class="score-container">
+              <div>Score</div>
+              <div id="score">0</div>
+            </div>
+            <button id="new-game">Restart Challenge</button>
+          </div>
+          <div class="grid-wrapper">
+            <div class="grid" id="grid"></div>
+            <div class="tile-layer" id="tile-layer"></div>
+          </div>
+          <div class="game-controls">
+  <button id="exit-game">Exit Challenge</button>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⬇️ Moved overlay outside game-card, to cover full screen -->
     <div class="overlay hidden" id="overlay">
       <div id="message"></div>
       <button id="try-again">Try Again</button>
     </div>
   </div>
-</div>
-</div>
+
   <script src="script.js"></script>
 </body>
 </html>

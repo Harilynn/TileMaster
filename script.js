@@ -4,12 +4,36 @@ let grid = [];
 let tileElements = [];
 let score = 0;
 
+
+
 const container = document.getElementById('grid');
 const scoreEl = document.getElementById('score');
 const newGameBtn = document.getElementById('new-game');
 const overlay = document.getElementById('overlay');
 const messageEl = document.getElementById('message');
 const tryAgainBtn = document.getElementById('try-again');
+
+const goals = [32,64,128,256,512,1024,2048];
+let timers = {}, currentStage=0, timeLeft=0, timerInterval;
+
+const setupEl = document.getElementById('setup'),
+      gameWrap = document.getElementById('game-wrapper'),
+      startBtn = document.getElementById('start-challenge'),
+      headerGoal = document.createElement('div'),
+      timerEl = document.createElement('div');
+const header = document.querySelector('.header');
+header.insertBefore(headerGoal, header.firstChild);
+header.insertBefore(timerEl, header.children[1]);
+headerGoal.style.fontWeight = timerEl.style.margin = '10px';
+startBtn.onclick = () => {
+  currentStage = 0;
+  init();               // ← One-time init
+  setupEl.classList.add('hidden');
+  gameWrap.classList.remove('hidden');
+  startStage();         // Then go into the first stage
+};
+
+
 
 function init() {
   // Reset core state
@@ -141,6 +165,9 @@ function move(dir) {
       ? grid[i].slice()
       : grid.map(r => r[i]);
     if (dir === 'right' || dir === 'down') line.reverse();
+    const max = Math.max(...grid.flat().filter(c=>c).map(c=>c.value));
+    if(max >= goals[currentStage]) onStageClear();
+
 
     const compact = line.filter(Boolean);
     for (let k = 0; k < compact.length - 1; k++) {
@@ -195,9 +222,39 @@ document.addEventListener('keydown', e => {
     }
   }
 });
-newGameBtn.addEventListener('click', init);
-tryAgainBtn.addEventListener('click', init);
-init();
+newGameBtn.addEventListener('click', () => {
+  currentStage = 0;
+  init();
+  startStage(); // ask for timer for 32 again
+});
+document.getElementById('exit-game').addEventListener('click', () => {
+  clearInterval(timerInterval);
+  gameWrap.classList.add('hidden');
+  setupEl.classList.remove('hidden');
+});
+
+
+tryAgainBtn.addEventListener('click', () => {
+  overlay.classList.add('hidden');
+
+  // If failed, restart everything
+  if (tryAgainBtn.textContent === 'Restart Challenge') {
+    location.reload(); // full reset
+  }
+
+  // If passed, just continue without resetting board
+  else if (tryAgainBtn.textContent === 'Next Level') {
+    currentStage++;
+    startStage();
+  }
+
+  // If final stage completed
+  else if (tryAgainBtn.textContent === 'Finish!') {
+    alert("Challenge complete! Restarting...");
+    location.reload();
+  }
+});
+
 
 
 document.querySelector('.how-to-toggle').addEventListener('click', () => {
@@ -205,3 +262,47 @@ document.querySelector('.how-to-toggle').addEventListener('click', () => {
   content.classList.toggle('open');
 });
 
+
+
+function startStage() {
+  const goal = goals[currentStage];
+
+  const inputTime = prompt(`Enter time (in seconds) to reach ${goal}:`, "60");
+  const seconds = parseInt(inputTime);
+  timeLeft = isNaN(seconds) || seconds <= 0 ? 60 : seconds;
+  timers[goal] = timeLeft;
+
+  headerGoal.textContent = `Goal: ${goal}`;
+  updateTimer();
+
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+    if (timeLeft <= 0) onFail();
+  }, 1000);
+}
+
+
+function updateTimer(){
+  const m = String(Math.floor(timeLeft/60)).padStart(2,'0'),
+        s = String(timeLeft%60).padStart(2,'0');
+  timerEl.textContent = `Time Left: ${m}:${s}`;
+}
+
+function onFail(){
+  clearInterval(timerInterval);
+  overlay.classList.remove('hidden');
+  messageEl.textContent = `Time's up! You didn't reach ${goals[currentStage]}.`;
+  tryAgainBtn.textContent = 'Restart Challenge';
+  tryAgainBtn.onclick = () => location.reload();
+}
+
+function onStageClear(){
+  clearInterval(timerInterval);
+  overlay.classList.remove('hidden');
+  messageEl.textContent = `🎉 Congrats! You reached ${goals[currentStage]}!`;
+  tryAgainBtn.textContent = currentStage+1<goals.length ? 'Next Level' : 'Finish!';
+  tryAgainBtn.textContent = currentStage + 1 < goals.length ? 'Next Level' : 'Finish!';
+
+}

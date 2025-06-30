@@ -37,22 +37,43 @@ body {
   align-items: center;
 }
 .header {
-  display:flex; justify-content:space-between; align-items:center;
+  display: flex;
+  justify-content: center; /* ⬅ centers children */
+  align-items: center;
+  gap: 10px; /* spacing between buttons */
   margin-bottom: 10px;
+  flex-wrap: wrap; /* for better responsiveness */
 }
+
 .header h1 {
   font-size:2rem; color:#776e65;
 }
 .score-container {
-  background:#eee4da; padding:10px 15px; border-radius:4px;
-  text-align:center; color:#776e65;
+  background: #eee4da;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-align: center;
+  color: #776e65;
+  font-weight: bold;
+  font-size: 1rem;
 }
+
 #score { font-size:1.4rem; font-weight:bold; }
 #new-game {
-  background:#8f7a66; color:white; border:none; padding:10px;
-  border-radius:4px; cursor:pointer; transition:opacity .2s;
+  background: rgb(249, 235, 218);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
 }
-#new-game:hover { opacity:.9; }
+
+#new-game:hover {
+  background: bisque;
+}
+
 .grid {
   width: 320px;
   height: 320px;
@@ -86,14 +107,22 @@ body {
 }
 
 .overlay {
-  position:absolute; top:0; left:0;
-  width:100%; height:100%;
-  background:#eee4daba;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  font-size:2rem; color:#776e65;
-  z-index:2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #eee4daba;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #776e65;
+  z-index: 9999;
 }
+
+
 .hidden { display:none; }
 #try-again {
   margin-top:20px; background:#8f7a66; color:white;
@@ -151,7 +180,7 @@ body {
 
 .how-to-toggle {
   padding: 10px 20px;
-  background: #8f7a66;
+  background: #3a5743;
   color: white;
   border: none;
   border-radius: 6px;
@@ -161,11 +190,12 @@ body {
 }
 
 .how-to-toggle:hover {
-  background: #7a6655;
+  background: #ece4b7;
+  color: black;
 }
 
 .how-to-content {
-  background: #ffffff;
+  background: #f1fcc9;
   color: #776e65;
   max-width: 400px;
   margin: 0;
@@ -198,4 +228,76 @@ body {
 
 .hidden {
   display: none;
+}
+
+.setup {
+  width: 500px; /* wider */
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  text-align: center; /* center contents */
+  animation: fadeSlide 0.5s ease-out;
+  
+}
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}  
+
+
+.game-wrapper { width:400px; margin:20px auto; background:#fff; padding:15px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+.hidden { display:none; }
+.stage-input { margin:8px 0; }
+
+
+
+#start-challenge {
+  margin-top: 15px;
+  padding: 12px 100px;
+  background: #8f7a66;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+   min-width: 200px;
+}
+
+#start-challenge:hover {
+  background: #7a6655;
+}
+
+#start-challenge:active {
+  transform: scale(0.96);
+}
+
+
+
+.game-controls {
+  text-align: center;
+  margin-top: 15px;
+}
+
+#exit-game {
+  background: beige;
+  color: black;
+  
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#exit-game:hover {
+  background: bisque;
 }
