@@ -2,17 +2,20 @@
 
 **TileMaster** is a modern, elegant reimagining of the classic 2048 puzzle game — with smooth animations, responsive design, and a vibrant UI.
 
-![image](https://github.com/user-attachments/assets/787b1f7a-6ddf-41ca-81ad-7d67b9454be0)
+![image](https://github.com/user-attachments/assets/19731c68-21cf-4cdd-8848-6e7598989b91)
 
 
 ---
 
 ## 🚀 How to Play
 
-- Use your **arrow keys** to slide tiles.
-- When two tiles with the same number touch, they **merge** into one.
-- Reach the **2048 tile** to win the game!
-- The game ends when **no more moves** are available.
+- Objective: Merge tiles to reach higher numbers before time runs out.
+
+- Use the arrow keys to move all tiles in one direction.
+- When two tiles with the same number touch, they combine.
+- Complete each target (32 → 64 → 128 …) within the time limit.
+- New time will be asked after each successful stage.
+- The challenge ends either when time runs out or you complete all stages.
 
 ---
 
